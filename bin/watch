@@ -9,10 +9,10 @@ var join = require('path').join
 var Gaze = require('gaze')
 
 /**
- * Watch directory.
+ * Watch pattern.
  */
 
-var dir = process.argv[2]
+var pattern = process.argv[2]
 
 /**
  * Command to execute.
@@ -24,7 +24,7 @@ var command = command()
  * Add listeners
  */
 
-var gaze = new Gaze(dir)
+var gaze = new Gaze(pattern)
 
 gaze.on('ready', ready)
 gaze.on('all', watch)
@@ -36,7 +36,7 @@ gaze.on('all', watch)
  */
 
 function ready (watcher) {
-  console.log('  watching \'%s\' execute \'%s\'', dir, command)
+  console.log('  watching \'%s\' execute \'%s\'', pattern, command)
 }
 
 /**
