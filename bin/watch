@@ -12,7 +12,7 @@ var Gaze = require('gaze')
  * Watch directory.
  */
 
-var dir = join(process.argv[2], '**')
+var dir = process.argv[2]
 
 /**
  * Command to execute.
