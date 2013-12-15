@@ -2,6 +2,8 @@
 
 Watch specific files or directories based on a pattern and re-execute a given command everytime something changes, beeing added or removed.
 
+![](https://i.cloudup.com/uwoCuagFjWg/V5m7Kg.png)
+
 ## Installation
 
 	$ npm install -g watch-run
