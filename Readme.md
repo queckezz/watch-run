@@ -12,9 +12,9 @@ Watch specific files or directories based on a pattern and re-execute a given co
 
 	$ watch-run <pattern> <command>
 
-and to get awesome debug messages use the DEBUG env variable
+And to get awesome debug messages use the `DEBUG` environment variable.
   
-  $ DEBUG=watch watch-run <pattern> <command>
+	$ DEBUG=watch watch-run <pattern> <command>
 
 `pattern` can be a glob pattern, a normal directory or just simply a file. For example, you can watch only for `js` changes in your `lib` folder like this `lib/**/*.js`. For more information on glob patterns take a look at [isaacs minimatch documentation](https://github.com/isaacs/minimatch).
 
