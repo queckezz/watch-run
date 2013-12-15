@@ -1,0 +1,13 @@
+{
+  "name": "watch-run",
+  "version": "0.0.1",
+  "description": "watch specific files or directories and re-execute a given command",
+  "bin": {
+    "watch-run": "bin/watch"
+  },
+  "author": "queckezz",
+  "license": "MIT",
+  "dependencies": {
+    "gaze": "~0.4.3"
+  }
+}

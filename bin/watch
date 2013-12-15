@@ -1,0 +1,72 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies
+ */
+
+var exec = require('child_process').exec
+var join = require('path').join
+var Gaze = require('gaze')
+
+/**
+ * Watch directory.
+ */
+
+var dir = join(process.argv[2], '**')
+
+/**
+ * Command to execute.
+ */
+
+var command = command()
+
+/**
+ * Add listeners
+ */
+
+var gaze = new Gaze(dir)
+
+gaze.on('ready', ready)
+gaze.on('all', watch)
+
+/**
+ * When watching, give us information.
+ *
+ * @param {Object} watcher
+ */
+
+function ready (watcher) {
+  console.log('  watching \'%s\' execute \'%s\'', dir, command)
+}
+
+/**
+ * Execute command when file in dir changes
+ * and log stdout and possibly stderr.
+ *
+ * @param {String} event
+ * @param {String} path
+ */
+
+function watch (event, path) {
+  exec(command, function(err, stdout, stderr) {
+    if(err) throw err;
+    if(stderr) console.log(stderr)
+
+    console.log(stdout)
+  })
+}
+
+/**
+ * Get the command from process.argv
+ *
+ * @return {String} args
+ */
+
+function command () {
+  var args = process.argv
+    .splice(3)
+    .toString()
+    .replace(/\,/g, ' ')
+
+  return args
+}
