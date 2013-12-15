@@ -6,7 +6,8 @@
 
 var exec = require('child_process').exec
 var join = require('path').join
-var Gaze = require('gaze')
+var Gaze = require('gaze').Gaze
+var debug = require('debug')('watch')
 
 /**
  * Watch pattern.
@@ -21,13 +22,19 @@ var pattern = process.argv[2]
 var command = command()
 
 /**
+ * Stats.
+ */
+
+var executed = 0
+
+/**
  * Add listeners
  */
 
 var gaze = new Gaze(pattern)
 
 gaze.on('ready', ready)
-gaze.on('all', watch)
+gaze.on('all', build)
 
 /**
  * When watching, give us information.
@@ -36,7 +43,8 @@ gaze.on('all', watch)
  */
 
 function ready (watcher) {
-  console.log('  watching \'%s\' execute \'%s\'', pattern, command)
+  debug('watching `%s` execute `%s`', pattern, command)
+  build()
 }
 
 /**
@@ -47,12 +55,14 @@ function ready (watcher) {
  * @param {String} path
  */
 
-function watch (event, path) {
+function build (event, path) {
+  executed++
+  if(executed > 1) debug('something %s, recompiling', event);
+
   exec(command, function(err, stdout, stderr) {
     if(err) throw err;
     if(stderr) console.log(stderr)
-
-    console.log(stdout)
+    if(stdout) console.log(stdout)
   })
 }
 
