@@ -5,10 +5,22 @@
   "bin": {
     "watch-run": "bin/watch"
   },
-  "author": "queckezz",
-  "license": "MIT",
   "dependencies": {
     "gaze": "~0.4.3",
-    "debug": "~0.7.4"
+    "debug": "~0.7.4",
+    "koa-mount": "~1.2.0"
+  },
+  "keywords": [
+    "watch",
+    "run command",
+    "command",
+    "run",
+    "re-execute"
+  ],
+  "author": "queckezz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/queckezz/watch-run"
   }
 }
