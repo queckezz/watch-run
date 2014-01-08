@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Module dependencies
+ * Module dependencies.
  */
 
 var exec = require('child_process').exec
@@ -16,7 +16,7 @@ var Gaze = require('gaze').Gaze
 
 program
   .usage('<cmd>')
-  .option('-p, --pattern <pattern>', 'glob pattern', 'lib/**')
+  .option('-p, --pattern <pattern>', 'glob pattern. More info: https://github.com/isaacs/minimatch', 'lib/**')
 
 /**
  * Examples.
@@ -32,7 +32,7 @@ program.on('--help', function(){
 })
 
 /**
- * Parse argv
+ * Parse argv.
  */
 
 program.parse(process.argv)
@@ -51,7 +51,7 @@ var watch = new Gaze(program.pattern)
 watch.on('all', execute)
 
 /**
- * Execute command when file in dir changes
+ * Execute command when file in dir changes.
  *
  * @param {String} event
  * @param {String} path
