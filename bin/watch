@@ -5,78 +5,62 @@
  */
 
 var exec = require('child_process').exec
+var debug = require('debug')('watch')
+var program = require('commander')
 var join = require('path').join
 var Gaze = require('gaze').Gaze
-var debug = require('debug')('watch')
 
 /**
- * Watch pattern.
+ * Options.
  */
 
-var pattern = process.argv[2]
+program
+  .usage('<cmd>')
+  .option('-p, --pattern <pattern>', 'glob pattern', 'lib/**')
 
 /**
- * Command to execute.
+ * Examples.
  */
 
-var command = command()
+program.on('--help', function(){
+  console.log()
+  console.log('  Examples:')
+  console.log()
+  console.log('    # watch dir and execute cmd')
+  console.log('    $ watch-run -p \'lib/**\' cat package.json')
+  console.log()
+})
 
 /**
- * Stats.
+ * Parse argv
  */
 
-var executed = 0
+program.parse(process.argv)
 
 /**
- * Add listeners
+ * Get command.
  */
 
-var gaze = new Gaze(pattern)
-
-gaze.on('ready', ready)
-gaze.on('all', build)
+var command = program.args.join(' ')
 
 /**
- * When watching, give us information.
- *
- * @param {Object} watcher
+ * Watch.
  */
 
-function ready (watcher) {
-  debug('watching `%s` execute `%s`', pattern, command)
-  build()
-}
+var watch = new Gaze(program.pattern)
+watch.on('all', execute)
 
 /**
  * Execute command when file in dir changes
- * and log stdout and possibly stderr.
  *
  * @param {String} event
  * @param {String} path
  */
 
-function build (event, path) {
-  executed++
-  if(executed > 1) debug('something %s, recompiling', event);
-
+function execute (event, path) {
   exec(command, function(err, stdout, stderr) {
     if(err) throw err;
-    if(stderr) console.log(stderr)
-    if(stdout) console.log(stdout)
+    if(stderr) console.log(stderr);
+    if(stdout) console.log(stdout);
   })
-}
-
-/**
- * Get the command from process.argv
- *
- * @return {String} args
- */
-
-function command () {
-  var args = process.argv
-    .splice(3)
-    .toString()
-    .replace(/\,/g, ' ')
-
-  return args
 }

@@ -1,6 +1,6 @@
 {
   "name": "watch-run",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "watch specific files or directories and re-execute a given command",
   "bin": {
     "watch-run": "bin/watch"
@@ -8,7 +8,7 @@
   "dependencies": {
     "gaze": "~0.4.3",
     "debug": "~0.7.4",
-    "koa-mount": "~1.2.0"
+    "commander": "~2.1.0"
   },
   "keywords": [
     "watch",
