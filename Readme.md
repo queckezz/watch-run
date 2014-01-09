@@ -1,6 +1,6 @@
 # watch-run(1)
 
-> Re-execute a given command everytime something changes in a specific directory. Build upon [gaze](https://github.com/shama/gaze)gaze.
+> Re-execute a given command everytime something changes in a specific directory. Build upon [gaze](https://github.com/shama/gaze).
 
 ## Installation
 
