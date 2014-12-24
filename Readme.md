@@ -11,7 +11,7 @@
 Via `--help`:
 
 ```
-Usage: watch <cmd>
+Usage: watch-run <cmd>
 
 Options:
 
