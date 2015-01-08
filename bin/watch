@@ -17,6 +17,7 @@ var Gaze = require('gaze').Gaze
 program
   .usage('<cmd>')
   .option('-p, --pattern <pattern>', 'glob pattern. More info: https://github.com/isaacs/minimatch', 'lib/**')
+  .option('-i, --initial', 'run <cmd> on initial startup', false)
 
 /**
  * Examples.
@@ -49,6 +50,14 @@ var command = program.args.join(' ')
 
 var watch = new Gaze(program.pattern)
 watch.on('all', execute)
+
+/**
+ * Run initial execution if required.
+ */
+
+if (program.initial) {
+  execute()
+}
 
 /**
  * Execute command when file in dir changes.

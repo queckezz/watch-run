@@ -17,6 +17,7 @@ Options:
 
   -h, --help               output usage information
   -p, --pattern <pattern>  glob pattern. More info: https://github.com/isaacs/minimatch
+  -i  --initial            run <cmd> on initial startup
 
 
 Examples:
