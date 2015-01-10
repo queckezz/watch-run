@@ -1,6 +1,6 @@
 {
   "name": "watch-run",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "watch specific files or directories and re-execute a given command",
   "bin": {
     "watch-run": "bin/watch"
