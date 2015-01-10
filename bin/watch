@@ -9,6 +9,7 @@ var debug = require('debug')('watch')
 var program = require('commander')
 var join = require('path').join
 var Gaze = require('gaze').Gaze
+var delay = 0;
 
 /**
  * Options.
@@ -17,6 +18,8 @@ var Gaze = require('gaze').Gaze
 program
   .usage('<cmd>')
   .option('-p, --pattern <pattern>', 'glob pattern. More info: https://github.com/isaacs/minimatch', 'lib/**')
+  .option('-i, --initial', 'run <cmd> on initial startup', false)
+  .option('-d, --delay <n>', 'delay execution of <cmd> for a number of milliseconds', parseInt)
 
 /**
  * Examples.
@@ -51,6 +54,20 @@ var watch = new Gaze(program.pattern)
 watch.on('all', execute)
 
 /**
+ * Run initial execution if required.
+ */
+
+if (program.initial) {
+  execute()
+}
+
+/**
+ * Set requested delay after initial execution.
+ */
+
+delay = program.delay || 0;
+
+/**
  * Execute command when file in dir changes.
  *
  * @param {String} event
@@ -58,9 +75,11 @@ watch.on('all', execute)
  */
 
 function execute (event, path) {
-  exec(command, function(err, stdout, stderr) {
-    if(err) throw err;
-    if(stderr) console.log(stderr);
-    if(stdout) console.log(stdout);
-  })
+  setTimeout(function () {
+    exec(command, function(err, stdout, stderr) {
+      if(err) throw err;
+      if(stderr) console.log(stderr);
+      if(stdout) console.log(stdout);
+    })
+  }, delay)
 }
