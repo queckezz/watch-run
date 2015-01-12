@@ -19,7 +19,7 @@ program
   .usage('<cmd>')
   .option('-p, --pattern <pattern>', 'glob pattern. More info: https://github.com/isaacs/minimatch', 'lib/**')
   .option('-i, --initial', 'run <cmd> on initial startup', false)
-  .option('-d, --delay <n>', 'delay execution of <cmd> for a number of milliseconds', parseInt)
+  .option('-a, --allow-errors', 'allow errors to occur in <cmd> without exiting watch-run', false)
 
 /**
  * Examples.
@@ -77,7 +77,7 @@ delay = program.delay || 0;
 function execute (event, path) {
   setTimeout(function () {
     exec(command, function(err, stdout, stderr) {
-      if(err) throw err;
+      if(err && !program.allowErrors) throw err;
       if(stderr) console.log(stderr);
       if(stdout) console.log(stdout);
     })

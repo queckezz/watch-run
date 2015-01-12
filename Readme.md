@@ -19,7 +19,7 @@ Options:
   -p, --pattern <pattern>  glob pattern. More info: https://github.com/isaacs/minimatch
   -i  --initial            run <cmd> on initial startup
   -d  --delay <n>          delay execution of <cmd> for a number of milliseconds
-
+  -a  --allow-errors       allow errors to occur in <cmd> without exiting run-watch
 
 Examples:
 
