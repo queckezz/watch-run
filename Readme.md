@@ -11,7 +11,7 @@
 Via `--help`:
 
 ```
-Usage: watch-run <cmd>
+Usage: watch-run [options] -- <cmd>
 
 Options:
 
@@ -24,12 +24,12 @@ Options:
 Examples:
 
   # watch dir and execute cmd
-  $ watch-run -p 'lib/**' cat package.json
+  $ watch-run -p 'lib/**' -- cat package.json
 ```
 
 ## Example
 
-	$ watch-run -p 'js/modules/**/*.js' browserify main.js -o public/build.js
+	$ watch-run -p 'js/modules/**/*.js' -- browserify main.js -o public/build.js
 
 ## License
 
