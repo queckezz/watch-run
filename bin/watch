@@ -24,7 +24,7 @@ var list = function (val) {
 program
   .usage('<cmd>')
   .option('-p, --pattern <pattern>', 'glob pattern. "," separates multiple patterns.\n' +
-          '                         More info: https://github.com/isaacs/minimatch' , list)
+          '                         More info: https://github.com/isaacs/minimatch' , list, '**')
   .option('-i, --initial', 'run <cmd> on initial startup', false)
   .option('-d, --delay <n>', 'delay execution of <cmd> for a number of milliseconds', parseInt)
   .option('-s, --stop-on-error', 'stop watching and exit when errors occur in <cmd>', false)
@@ -60,10 +60,6 @@ var command = program.args.join(' ')
 /**
  * Watch.
  */
-
-if (!program.pattern) {
-  program.pattern = 'lib/**'  
-}
 
 var watch = new Gaze(program.pattern)
 watch.on('all', execute)
