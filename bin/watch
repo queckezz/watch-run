@@ -19,6 +19,7 @@ program
   .usage('<cmd>')
   .option('-p, --pattern <pattern>', 'glob pattern. More info: https://github.com/isaacs/minimatch', 'lib/**')
   .option('-i, --initial', 'run <cmd> on initial startup', false)
+  .option('-d, --delay <n>', 'delay execution of <cmd> for a number of milliseconds', parseInt)
   .option('-s, --stop-on-error', 'stop watching and exit when errors occur in <cmd>', false)
 
 /**
