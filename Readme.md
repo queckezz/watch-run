@@ -4,7 +4,7 @@
 
 ## Installation
 
-	$ npm install -g watch-run
+    $ npm install -g watch-run
 
 ## Usage
 
@@ -16,20 +16,24 @@ Usage: watch-run <cmd>
 Options:
 
   -h, --help               output usage information
-  -p, --pattern <pattern>  glob pattern. More info: https://github.com/isaacs/minimatch
-  -i  --initial            run <cmd> on initial startup
-  -d  --delay <n>          delay execution of <cmd> for a number of milliseconds
-  -s  --stop-on-error     stop watching and exit when errors occur in <cmd>
+  -p, --pattern <pattern>  glob pattern. "," separates multiple patterns.
+                           More info: https://github.com/isaacs/minimatch
+  -i, --initial            run <cmd> on initial startup
+  -d, --delay <n>          delay execution of <cmd> for a number of milliseconds
+  -s, --stop-on-error      stop watching and exit when errors occur in <cmd>
 
 Examples:
 
   # watch dir and execute cmd
   $ watch-run -p 'lib/**' cat package.json
+
+  # watch dir "lib" and "src" and execute cmd
+  $ watch-run -p 'lib/**,src/**' cat package.json
 ```
 
 ## Example
 
-	$ watch-run -p 'js/modules/**/*.js' browserify main.js -o public/build.js
+    $ watch-run -p 'js/modules/**/*.js' browserify main.js -o public/build.js
 
 ## License
 
