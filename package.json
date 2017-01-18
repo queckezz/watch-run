@@ -6,7 +6,7 @@
     "watch-run": "bin/watch"
   },
   "dependencies": {
-    "gaze": "~0.4.3",
+    "gaze": "~1.1.2",
     "debug": "~0.7.4",
     "commander": "~2.1.0"
   },
