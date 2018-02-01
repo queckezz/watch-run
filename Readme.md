@@ -31,6 +31,12 @@ Examples:
 
   # watch dir "lib" and "src" and execute cmd
   $ watch-run -p 'lib/**,src/**' cat package.json
+
+  # watch dir "lib" and "src" and execute cmd, while using the absolute path of the changed file
+  $ watch-run -p 'lib/**,src/**' cat {absolute}
+
+  # watch dir "lib" and "src" and execute cmd, while using the relative (to the current workind-dir) path of the changed file
+  $ watch-run -p 'lib/**,src/**' cat ./{relative}
 ```
 
 ## Example
